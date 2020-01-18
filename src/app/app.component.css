@@ -1,0 +1,67 @@
+.container{
+    margin: 25px;
+    font-family: Verdana, sans-serif;
+   }
+   input.ng-invalid.ng-touched, .red-border-class {
+    border: 1px solid red;
+  }
+   .dd-card{
+    width: 200px;
+    margin: 32px;
+    padding-right:1px;
+   }
+          form.submitted input.ng-invalid, input.ng-dirty.ng-invalid {
+            border: 1px solid red;
+          }
+ .btn{
+     background-color: cornflowerblue;
+     color:white;
+     width:100px; 
+     height: 40px;  
+    }
+input{
+    height: 35px;
+    max-width:200px;
+    width: 198px;
+   }
+   .logo {
+    margin: 10px;
+   }
+   .price{
+     background-color:whitesmoke;
+     text-align: right;
+     color:gray;
+     height: 40px;
+    width: 200px;
+   }
+   .price .price-range{
+ 
+    margin-right: 10px;
+    margin-top: 0px;
+   }
+   .price .price-range span{
+     display: block;
+     font-size:12px;
+   }
+   .text-content-ellipsis, .brandName{
+     font-size: 14px;
+     color:gray;
+     margin: 10px 0px;
+     padding-top: 5px;
+		 text-overflow: ellipsis;
+     width: 200px;
+     height: 32px;
+		 overflow: hidden;
+     }
+     .brandName{
+      font-size: 14px;
+      color:gray;
+      margin: 5px 0px;
+     }
+     .alert{
+     color: red;
+     font-size:12px;
+     width: 200px;
+   }
+   
+   

@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="flex-container" fxLayout="column">
+     <div class ="header" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="6px">
+        <div fxlayout="column"  fxFlex=20 class="logo"><img class="image"src="../assets/logo.png"/></div>
+        <div fxFlex=70 fxlayout="column">
+           <form>
+              <label>Filter By Price</label>
+              <div class="input-row" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="start start">
+                 <div fxlayout="column" >
+                    <input id="minimumPrice" name="minimumPrice" class="form-control"
+                    required [(ngModel)]="minprice" #minimumPrice="ngModel" placeholder="Minimum Price" (keyup) = "validateMinPrice(); validateMaxPrice();">
+                    <div *ngIf="minimumPrice.invalid && (minimumPrice.dirty || minimumPrice.touched)"
+                       class="alert alert-danger">
+                       MinimumPrice is required.
+                    </div>
+                    <div *ngIf="isMinPriceInvalid && minprice!=='' "class="alert alert-danger">
+                       {{minPriceErrorMsg}}
+                    </div>
+                 </div>
+                 <div fxlayout="column" >
+                    <input id="maximumPrice" name="maximumPrice" class="form-control" 
+                    required [(ngModel)]="maxprice" #maximumPrice="ngModel" placeholder="Maximum Price" (keyup) = "validateMaxPrice(); validateMinPrice();">
+                    <div *ngIf="maximumPrice.invalid && (maximumPrice.dirty || maximumPrice.touched)"
+                       class="alert alert-danger"> MaximumPrice is required. </div>
+                    <div *ngIf="isMaxPriceInvalid && maxprice!==''" class="alert alert-danger">
+                       {{maxPriceErrorMsg}}
+                    </div>
+                 </div>
+                 <button class="btn" [disabled]="isMaxPriceInvalid || isMinPriceInvalid" (click) = applyFilter();>Filter</button>
+              </div>
+           </form>
+        </div>
+     </div>
+     <div fxFlex="column" class="hline">
+        <hr>
+     </div>
+     <div fxFlex="100" fxLayoutGap="50px">
+        <div class="search-card-container">
+           <div fxLayout="row wrap" fxLayoutGap = "10px" fxLayoutAlign="center" fxLayoutAlign.gt-xs="start start" class="search-card-inner">
+              <div *ngFor="let data of searchResults" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutAlign.gt-xs="start start" class="search-card-inner">
+                 <div fxFlex class="app-search-card">
+                    <div class="dd-card" fxFlexLayout="column">
+                       <div class="mt1 image_background cursor-pointer" >
+                          <div class="img-container" >
+                             <img class="img-responsive" src={{data.finalurl}}>  
+                          </div>
+                       </div>
+                       <div fxLayout="row" fxLayoutGap="6px" fxLayoutAlign="space-between center" class="detail-container">
+                          <div fxLayout="column" class="detail-inner">
+                             <div class="text-content-ellipsis  display-name"><b>{{data.assetName}}</b>
+                             </div>
+                             <div class="brandName">{{data.brandName}}
+                             </div>
+                             <div class="price" *ngIf= "data.minimumPrice != data.maximumPrice">
+                                <b>
+                                   <p class="price-range">${{data.minimumPrice}} - ${{data.maximumPrice}}<span>MSRP</span></p>
+                                </b>
+                             </div>
+                             <div class="price" *ngIf= "data.minimumPrice == data.maximumPrice">
+                                <b>
+                                   <p class="price-range">${{data.minimumPrice}}<span>MSRP</span></p>
+                                </b>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
